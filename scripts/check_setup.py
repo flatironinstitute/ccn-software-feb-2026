@@ -10,6 +10,7 @@ import sys
 import subprocess
 import warnings
 import os
+from packaging.version import Version
 
 warnings.filterwarnings(
     "ignore",
@@ -54,6 +55,19 @@ else:
     stdout = '\n'.join(p.stdout.decode().split('\n')[1:])
     print(f":white_check_mark: jupyter found with following core packages:\n{stdout}")
 
+try:
+    import jupyterlab
+except ModuleNotFoundError:
+    errors += 1
+    print(":x: jupyterlab not found.")
+else:
+    version = Version(jupyterlab.__version__)
+    if version < Version("4.5.0"):
+        errors += 1
+        print(":x: jupyterlab not recent enough! We need at least 4.5.0.")
+    else:
+        print(f":white_check_mark: jupyterlab version:\n{version}")
+
 p = subprocess.Popen(['jupyter', 'labextension', 'list'], stderr=subprocess.PIPE)
 if os.name == "nt":
     search_cmd = "findstr"
@@ -71,7 +85,12 @@ else:
             # this import may give a deprecation warning about how jupyter handles paths
             warnings.simplefilter("ignore")
             import jupyterlab_myst
-        print(f":white_check_mark: jupyterlab_myst version:\n{jupyterlab_myst.__version__}")
+            version = Version(jupyterlab_myst.__version__)
+        if version < Version("2.6.0"):
+            errors += 1
+            print(":x: jupyterlab_myst not recent enough! We need at least 2.6.0.")
+        else:
+            print(f":white_check_mark: jupyterlab_myst version:\n{version}")
     else:
         errors += 1
         print(":x: jupyterlab_myst not set up correctly! Look at the output of `jupyter labextension list` and try running [bold]pip install jupyterlab_myst[/bold]")
@@ -136,5 +155,5 @@ else:
     print("If you encountered many installation errors and are *not* using uv, run [bold] pip install -e .[/bold] (note the dot!)")
     print("If you are unable to fix your setup yourself, please come to the setup help at")
     print("the Flatiron Institute, 160 5th Ave, in the 3rd floor conference center, before breakfast on Tuesday,")
-    print(" February 3rd, 2026. We'll be there starting at 8:30am!")
+    print("February 3rd, 2026. We'll be there starting at 8:30am!")
     print("Be prepared to show us the output of this command, so we can try and fix your problem as quickly as possible!")
