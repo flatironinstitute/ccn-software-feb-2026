@@ -113,6 +113,14 @@ There's no need to create a virtual environment, since `uv` will handle that for
 ::::::{tab-item} conda / miniforge
 :sync: conda
 
+:::{warning}
+
+Due to [recent changes](https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research) to Anaconda's Terms of Service, the Simons Foundation cannot use the `defaults` conda channel and it is blocked on all Flatiron Institute wireless networks. You need to specify `conda-forge` instead (which is community-managed and open to all). The following instructions do so, but if you follow your normal workflow, you may hit issues.
+
+If you have persistent issues with this, try using `uv` instead, which does not have this issue.
+
+:::
+
 1. Install [miniforge](https://github.com/conda-forge/miniforge) if you do not have some version of `conda` or `mamba` installed already.
 2. Open up a terminal and create the new virtual environment by running (**WINDOWS USERS**: use the `Miniforge Prompt` or `Anaconda Prompt` that comes packaged with the miniforge/anaconda/miniconda install):
     ```shell
@@ -254,6 +262,7 @@ During the first day, we will demonstrate [pynaviz](https://pynapple-org.github.
 (troubleshooting)=
 ## Troubleshooting
 
+- When creating the conda environment, you may get errors related to accessing the `defaults` channel. Due to [recent changes](https://www.anaconda.com/blog/update-on-anacondas-terms-of-service-for-academia-and-research) to Anaconda's Terms of Service, the Simons Foundation cannot use the `defaults` conda channel and it is blocked on all Flatiron Institute wireless networks. You need to specify `conda-forge` instead (which is community-managed and open to all). (The instructions above should do so.)
 - If you are on Mac and get an error related to `ruamel.yaml` (or `clang`) when running `pip install -e .`, we think this can be fixed by updating your Xcode Command Line Tools.
 - On Windows, you may receive an error saying "running scripts is disabled on this system" when trying to activate the virtual environment. If so, run `Set-ExecutionPolicy -Scope CurrentUser` and enter `Unrestricted`, then press `Y`. (You may have to do this every time you open powershell.)
 - If you have multiple jupyter installs on your path (because e.g., because you have an existing jupyter installation in a conda environment and you then used `uv` to setup the virtual environment for this workshop), jupyter can get confused. (You can check if this is the case by running `which -a jupyter` on Mac / Linux.)
