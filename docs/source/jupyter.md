@@ -1,9 +1,7 @@
 (jupyter-lab)=
 # Intro to Jupyter Lab
 
-If you are unfamiliar with jupyter lab, please come to our "Intro to Jupyter Lab" session in the Omni San Diego Hotel, Gallery 1, at 4:30pm on Wednesday, November 12.
-
-This introduction will go over some of the more common shortcuts we will use during the live-coding sessions of the workshop. We will attempt to explain everything as we do it, but this introduction will hopefully start familiarizing you with the shortcuts so you can feel more confident.
+We will attempt to explain everything as we do it, but here's a quick cheat sheet to familiarize you with the most commonly-used shortcuts:
 
 Together we will open up a new jupyter notebook and practice:
 - Toggling between jupyter's command and edit mode (`Escape`, `Enter`).

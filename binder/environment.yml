@@ -1,4 +1,4 @@
-name: sfn2025
+name: feb2026
 channels:
   - conda-forge
   - nvidia
