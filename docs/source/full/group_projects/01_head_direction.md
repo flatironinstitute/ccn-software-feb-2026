@@ -62,12 +62,6 @@ For part 1 of the tutorial, we will use pynapple to do the following tasks:
 2. Compute tuning curves
 3. Compute cross-correlograms
 
-For part 2 of the tutorial, we will use nemos to do the following tasks:
-1. Create spike history features
-2. Fit a GLM model to a single neuron
-3. Fit a GLM model with basis functions to reduce over-fitting
-4. Fit a GLM model to all neurons to learn functional connectivity
-
 Let's start by importing all the packages.
 
 </div>

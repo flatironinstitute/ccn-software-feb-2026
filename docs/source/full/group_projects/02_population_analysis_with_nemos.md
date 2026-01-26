@@ -39,9 +39,84 @@ This notebook can be downloaded as **{nb-download}`02_population_analysis_with_n
 
 <div class="render-all">
 
-In the first part of the notebook, we characterized the relationship between head-direction cells during wake and sleep. Cells that fire together during wake also fire together during sleep and cells that don't fire together during wake don't fire together during sleep. The goal here is to characterized this relationship with generalized linear model. Since cells have a functional relationship to each other, the activity of one cell should predict the activity of another cell.
+In the first part of the notebook, we characterized the relationship between head-direction cells during wake and sleep. 
+Cells that fire together during wake also fire together during sleep and cells that don't fire together during wake don't fire 
+together during sleep. The goal here is to characterized this relationship with generalized linear model. 
+Since cells have a functional relationship to each other, the activity of one cell should predict the activity of another cell.
 
-**Question : are neurons constantly tuned to head-direction and can we use it to predict the spiking activity of each neuron based only on the activity of other neurons?**
+For part 2 of the tutorial, we will use nemos to do the following tasks:
+1. Create spike history features
+2. Fit a GLM model to a single neuron
+3. Fit a GLM model with basis functions to reduce over-fitting
+4. Fit a GLM model to all neurons to learn functional connectivity
+
+Let's start by importing all the packages.
+
+</div>
+
+
+```{code-cell} ipython3
+:tags: [render-all]
+
+import workshop_utils
+import pynapple as nap
+import matplotlib.pyplot as plt
+import numpy as np
+import nemos as nmo
+
+# some helper plotting functions
+from nemos import _documentation_utils as doc_plots
+import workshop_utils
+
+# configure pynapple to ignore conversion warning
+nap.nap_config.suppress_conversion_warnings = True
+
+# configure plots some
+plt.style.use(nmo.styles.plot_style)
+```
+
+
+## Part 0 : Fetching the data
+
+<div class="render-all">
+
+We will use the same dataset as in the previous tutorial, which can be downloaded with the helper function `fetch_data`.
+To speed up the session, the following code cell will download the data, load it with pynapple and extract the relevant 
+variables:
+
+</div>
+
+
+```{code-cell} ipython3
+:tags: [render-all]
+
+path = workshop_utils.fetch_data("Mouse32-140822.nwb")
+data = nap.load_file(path)
+spikes = data["units"]  # Get spike timings
+angle = data["ry"] # Get head-direction signal
+epochs = data["epochs"] # Get epochs
+wake_ep = epochs[epochs.tags=="wake"]
+sleep_ep = epochs[epochs.tags=="sleep"]
+tuning_curves = nap.compute_tuning_curves(
+    data=spikes,
+    features=angle, 
+    bins=61, 
+    epochs = angle.time_support,
+    range=(0, 2 * np.pi),
+    feature_names = ["angle"]
+    )
+pref_ang = tuning_curves.idxmax(dim="angle")
+spikes.set_info(pref_ang = pref_ang)
+```
+
+
+
+## Part 1 : Fitting a GLM to a single neuron
+
+<div class="render-all">
+
+**Question : are neurons constantly tuned to head-direction and can we use it to predict the spiking activity of each neuron 
+based only on the activity of other neurons?**
 
 To fit the GLM faster, we will use only the first 3 min of wake.
 
