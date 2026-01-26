@@ -66,12 +66,11 @@ import nemos as nmo
 
 # some helper plotting functions
 from nemos import _documentation_utils as doc_plots
-import workshop_utils
 
 # configure pynapple to ignore conversion warning
 nap.nap_config.suppress_conversion_warnings = True
 
-# configure plots some
+# configure plot style
 plt.style.use(nmo.styles.plot_style)
 ```
 
@@ -305,7 +304,6 @@ dimension are matching our expectation
 
 print(f"Time bins in counts: {neuron_count.shape[0]}")
 print(f"Convolution window size in bins: {window_size}")
-print(f"Feature shape: {input_feature.shape}")
 print(f"Feature shape: {input_feature.shape}")
 ```
 
@@ -815,7 +813,6 @@ Let's plot the predicted rates over a short window not used for training.
 ```{code-cell} ipython3
 :tags: [render-all]
 
-ep = nap.IntervalSet(start=8819.4, end=8821)
 # plot the rates
 fig = doc_plots.plot_rates_and_smoothed_counts(
     neuron_count,
@@ -932,7 +929,7 @@ print(f"Model coefficients shape: {model.coef_.shape}")
 model = nmo.glm.PopulationGLM(
     regularizer="Ridge",
     solver_name="LBFGS",
-    regularizer_strength=0.01
+    regularizer_strength=0.1
     ).fit(convolved_count, count)
 
 print(f"Model coefficients shape: {model.coef_.shape}")
@@ -1002,7 +999,7 @@ Let's see if our firing rate predictions improved and in what sense.
 fig = doc_plots.plot_rates_and_smoothed_counts(
     neuron_count,
     {"Self-connection: raw history": rate_history,
-     "Self-connection: bsais": rate_basis,
+     "Self-connection: basis": rate_basis,
      "All-to-all: basis": predicted_firing_rate[:, 0]}
 )
 ```
