@@ -93,6 +93,7 @@ variables:
 path = workshop_utils.fetch_data("Mouse32-140822.nwb")
 data = nap.load_file(path)
 spikes = data["units"]  # Get spike timings
+spikes = spikes[(spikes.location=='adn') & (spikes.rate>2.0)]  # Keep only ADN neurons with firing rate > 2Hz
 angle = data["ry"] # Get head-direction signal
 epochs = data["epochs"] # Get epochs
 wake_ep = epochs[epochs.tags=="wake"]
@@ -107,6 +108,7 @@ tuning_curves = nap.compute_tuning_curves(
     )
 pref_ang = tuning_curves.idxmax(dim="angle")
 spikes.set_info(pref_ang = pref_ang)
+
 ```
 
 
@@ -930,7 +932,7 @@ print(f"Model coefficients shape: {model.coef_.shape}")
 model = nmo.glm.PopulationGLM(
     regularizer="Ridge",
     solver_name="LBFGS",
-    regularizer_strength=0.1
+    regularizer_strength=0.01
     ).fit(convolved_count, count)
 
 print(f"Model coefficients shape: {model.coef_.shape}")
