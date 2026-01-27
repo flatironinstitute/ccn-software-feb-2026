@@ -387,7 +387,14 @@ The most informative for us is the `'mean_test_score'` key, which shows the aver
 As an exercise, spend 10 minutes trying to find the best regularization strength!
 
 - You should use the `glm` model we defined in this section.
-- You will need to redefine the `param_grid` dictionary, selecting different values for `"regularizer_strength"`.
+- You will need to redefine the `param_grid` dictionary, selecting different values for `"regularizer_strength"`:
+
+```{code-block} python
+param_grid = {
+    "regularizer_strength": ...,
+}
+```
+
 - After defining `param_grid`, reinitialize `cv` (you can do so with the same arguments).
 - Then call `cv.fit` and re-run `pd.DataFrame(cv.cv_results_)` to summarize the results.
 
@@ -772,6 +779,14 @@ As an exercise, spend 10 minutes exploring the possible basis objects and seeing
 
 - You should use the `pipe` object we defined in this section.
 - You will need to redefine the `param_grid` dictionary, setting `basis__speed` and `basis__position` (or their attributes, e.g., `basis__position__n_basis_funcs`) to a range of values. Remember that all combinations are tested, so if you e.g., select 5 choices for each, you'll be testing 25 different combinations!
+
+```{code-block} python
+param_grid = {
+    "basis__position": ...,
+    "basis__speed": ...,
+}
+
+```
 - After defining `param_grid`, reinitialize `cv` (you can do so with the same arguments).
 - Then call `cv.fit` and re-run `pd.DataFrame(cv.cv_results_)` to summarize the results.
 - Finally, visualize the best estimator with `visualize_model_predictions(cv.best_estimator_, transformer_input)`
