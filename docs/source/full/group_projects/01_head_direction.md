@@ -609,6 +609,7 @@ Similar to part 1, we will start by loading the NWB file. The function `nap.load
 data = ... # Load NWB file
 print(data)
 ```
+</div>
 
 ```{code-cell} ipython3
 :tags: [render-all]
