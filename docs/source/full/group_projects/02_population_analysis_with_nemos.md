@@ -1268,7 +1268,7 @@ print(f"Convolved calcium shape: {calcium_convolved.shape}")
 ### Fitting the Population GLM
 
 <div class="render-all">
-We can fit a `PopulationGLM` to the calcium data using a Gaussian observation model, which is more appropriate for continuous-valued data.
+We can fit a `PopulationGLM` to the calcium data using a Gamma observation model, which is more appropriate for continuous-valued data.
 
 Similar to before, we will create a train-test split using the first and second half of the data.
 
@@ -1299,7 +1299,7 @@ print(f"Calcium model coefficients shape: {calcium_model.coef_.shape}")
 ```{code-cell} ipython3
 :tags: [render-all]
 calcium_model = nmo.glm.PopulationGLM(
-    observation_model="Gaussian",
+    observation_model="Gamma",
     regularizer="Ridge",
     solver_name="LBFGS",
     regularizer_strength=0.1
