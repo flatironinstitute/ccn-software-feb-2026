@@ -1233,7 +1233,6 @@ calcium_basis
 
 
 ```{code-cell} ipython3
-:tags: [render-all]
 # define the basis for calcium data
 calcium_window_size_sec = 2.0  # 2 seconds window
 calcium_window_size = int(calcium_window_size_sec * transients.rate)
@@ -1259,7 +1258,6 @@ print(f"Convolved calcium shape: {calcium_convolved.shape}")
 </div>
 
 ```{code-cell} ipython3
-:tags: [render-all]
 # convolve all the neurons
 calcium_convolved = calcium_basis.compute_features(transients)
 print(f"Convolved calcium shape: {calcium_convolved.shape}")
@@ -1297,7 +1295,6 @@ print(f"Calcium model coefficients shape: {calcium_model.coef_.shape}")
 </div>
 
 ```{code-cell} ipython3
-:tags: [render-all]
 calcium_model = nmo.glm.PopulationGLM(
     observation_model="Gamma",
     regularizer="Ridge",
@@ -1320,7 +1317,6 @@ calcium_predicted = calcium_model.predict( ) # Parameter is the convolved featur
 </div>
 
 ```{code-cell} ipython3
-:tags: [render-all]
 calcium_predicted = calcium_model.predict(calcium_convolved.restrict(testing_ep))
 ```
 
