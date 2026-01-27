@@ -31,7 +31,7 @@ warnings.filterwarnings(
 :::{admonition} Download
 :class: important render-all
 
-This notebook can be downloaded as **{nb-download}`02_phase_precession.ipynb`**. See the button at the top right to download as markdown or pdf.
+This notebook can be downloaded as **{nb-download}`03_phase_precession.ipynb`**. See the button at the top right to download as markdown or pdf.
 :::
 
 # Analyzing hippocampal place cells with Pynapple and NeMoS
@@ -421,13 +421,13 @@ axs[1].set_xlabel("Time (s)");
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-01.png")
+fig.savefig("../../_static/_check_figs/03-01.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-01.png)
+![](../../_static/_check_figs/03-01.png)
 :::
 </div>
 
@@ -525,13 +525,13 @@ ax.legend([p1[0], p2[0]],["raw LFP","animal position"])
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-02.png")
+fig.savefig("../../_static/_check_figs/03-02.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-02.png)
+![](../../_static/_check_figs/03-02.png)
 :::
 </div>
 
@@ -611,13 +611,13 @@ plt.legend();
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-03.png")
+fig.savefig("../../_static/_check_figs/03-03.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-03.png)
+![](../../_static/_check_figs/03-03.png)
 :::
 </div>
 
@@ -674,13 +674,13 @@ ax.legend([p1[0],p2[0]],["theta phase","filtered LFP"])
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-04.png")
+fig.savefig("../../_static/_check_figs/03-04.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-04.png)
+![](../../_static/_check_figs/03-04.png)
 :::
 </div>
 
@@ -766,13 +766,13 @@ p.set_ylabels("firing rate (Hz)")
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-p.fig.savefig("../../_static/_check_figs/02-05.png")
+p.fig.savefig("../../_static/_check_figs/03-05.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-05.png)
+![](../../_static/_check_figs/03-05.png)
 :::
 </div>
 
@@ -829,13 +829,13 @@ axs[1].legend()
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-06.png")
+fig.savefig("../../_static/_check_figs/03-06.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-06.png)
+![](../../_static/_check_figs/03-06.png)
 :::
 </div>
 
@@ -888,13 +888,13 @@ axs[2].legend()
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-07.png")
+fig.savefig("../../_static/_check_figs/03-07.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-07.png)
+![](../../_static/_check_figs/03-07.png)
 :::
 </div>
 
@@ -936,13 +936,13 @@ axs.set_xlabel("Position (cm)")
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-08.png")
+fig.savefig("../../_static/_check_figs/03-08.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-08.png)
+![](../../_static/_check_figs/03-08.png)
 :::
 </div>
 
@@ -994,13 +994,13 @@ axs[1].set(ylabel="Position (cm)", xlabel="Time (s)", title="Upsampled position 
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-09.png")
+fig.savefig("../../_static/_check_figs/03-09.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-09.png)
+![](../../_static/_check_figs/03-09.png)
 :::
 </div>
 
@@ -1065,13 +1065,13 @@ p = tc_norm.plot(x="position", y="phase", col="unit", col_wrap=5, size=1.2, aspe
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-p.fig.savefig("../../_static/_check_figs/02-10.png")
+p.fig.savefig("../../_static/_check_figs/03-10.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-10.png)
+![](../../_static/_check_figs/03-10.png)
 :::
 </div>
 
@@ -1161,13 +1161,13 @@ p = (place_fields_sorted / place_fields_sorted.max(axis=1)).plot()
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-p.figure.savefig("../../_static/_check_figs/02-11.png")
+p.figure.savefig("../../_static/_check_figs/03-11.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-11.png)
+![](../../_static/_check_figs/03-11.png)
 :::
 </div>
 
@@ -1214,13 +1214,13 @@ ax.set(xlabel="Time (s)", ylabel="Position (cm)", );
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-12.png")
+fig.savefig("../../_static/_check_figs/03-12.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-12.png)
+![](../../_static/_check_figs/03-12.png)
 :::
 </div>
 
@@ -1279,13 +1279,13 @@ ax.set(xlabel="Time (s)", ylabel="Position (cm)", );
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-13.png")
+fig.savefig("../../_static/_check_figs/03-13.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-13.png)
+![](../../_static/_check_figs/03-13.png)
 :::
 </div>
 
@@ -1336,13 +1336,13 @@ fig.supxlabel("Time (s)");
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-14.png")
+fig.savefig("../../_static/_check_figs/03-14.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-14.png)
+![](../../_static/_check_figs/03-14.png)
 :::
 </div>
 
@@ -1484,13 +1484,13 @@ fig = workshop_utils.plot_pos_speed_bases(position_basis, speed_basis)
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-15.png")
+fig.savefig("../../_static/_check_figs/03-15.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-15.png)
+![](../../_static/_check_figs/03-15.png)
 :::
 </div>
 
@@ -1646,13 +1646,13 @@ fig = workshop_utils.plot_position_speed_tuning(place_fields, tc_speed, glm_tuni
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-16.png", bbox_inches="tight")
+fig.savefig("../../_static/_check_figs/03-16.png", bbox_inches="tight")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-16.png)
+![](../../_static/_check_figs/03-16.png)
 :::
 </div>
 
