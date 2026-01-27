@@ -232,7 +232,7 @@ fig.savefig("../../_static/_check_figs/02-01.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-04.png)
+![](../../_static/_check_figs/02-01.png)
 :::
 </div>
 
@@ -337,7 +337,7 @@ fig.savefig("../../_static/_check_figs/02-02.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-05.png)
+![](../../_static/_check_figs/02-02.png)
 :::
 </div>
 
@@ -441,7 +441,7 @@ fig.savefig("../../_static/_check_figs/02-03.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-06.png)
+![](../../_static/_check_figs/02-03.png)
 :::
 </div>
 
@@ -512,7 +512,7 @@ fig.savefig("../../_static/_check_figs/02-04.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-07.png)
+![](../../_static/_check_figs/02-04.png)
 :::
 </div>
 
@@ -554,7 +554,7 @@ fig.savefig("../../_static/_check_figs/02-05.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-08.png)
+![](../../_static/_check_figs/02-05.png)
 :::
 </div>
 
@@ -662,7 +662,7 @@ fig.savefig("../../_static/_check_figs/02-06.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-09.png)
+![](../../_static/_check_figs/02-06.png)
 :::
 </div>
 
@@ -776,13 +776,13 @@ plt.legend()
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-7.png")
+fig.savefig("../../_static/_check_figs/02-07.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-10.png)
+![](../../_static/_check_figs/02-07.png)
 :::
 </div>
 
@@ -830,13 +830,13 @@ fig = doc_plots.plot_rates_and_smoothed_counts(
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-8.png")
+fig.savefig("../../_static/_check_figs/02-08.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-11.png)
+![](../../_static/_check_figs/02-08.png)
 :::
 </div>
 
@@ -984,13 +984,13 @@ fig = workshop_utils.plot_head_direction_tuning_model(tuning_curves, spikes, ang
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-fig.savefig("../../_static/_check_figs/02-9.png")
+fig.savefig("../../_static/_check_figs/02-09.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-12.png)
+![](../../_static/_check_figs/02-09.png)
 :::
 </div>
 
@@ -1020,7 +1020,7 @@ fig.savefig("../../_static/_check_figs/02-10.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-13.png)
+![](../../_static/_check_figs/02-10.png)
 :::
 </div>
 
@@ -1121,7 +1121,7 @@ fig.savefig("../../_static/_check_figs/02-11.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-14.png)
+![](../../_static/_check_figs/02-11.png)
 :::
 </div>
 
@@ -1345,7 +1345,7 @@ plt.savefig("../../_static/_check_figs/02-12.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-15.png)
+![](../../_static/_check_figs/02-12.png)
 :::
 </div>
 
@@ -1382,7 +1382,7 @@ fig.savefig("../../_static/_check_figs/02-13.png")
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/02-16.png)
+![](../../_static/_check_figs/02-13.png)
 :::
 </div>
 
