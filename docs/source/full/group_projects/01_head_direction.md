@@ -647,8 +647,19 @@ fig = plt.figure()
 plt.plot(transients[:,0:2].get(0, 100))
 plt.xlabel("Time (s)")
 plt.ylabel("Fluorescence (a.u.)")
-plt.show()
 ```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+fig.savefig("../../_static/_check_figs/01-04.png")
+```
+
+<div class="render-user">
+:::{admonition} Figure check
+:class: dropdown
+![](../../_static/_check_figs/01-04.png)
+:::
+</div>
 
 ### Compute tuning curves
 
@@ -705,8 +716,21 @@ tuning_curves[1].plot()
 plt.subplot(224,projection='polar')
 plt.plot(tuning_curves.angle, tuning_curves[1].values)
 plt.tight_layout()
-plt.show()
+
 ```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+fig.savefig("../../_static/_check_figs/01-05.png")
+```
+
+<div class="render-user">
+:::{admonition} Figure check
+:class: dropdown
+![](../../_static/_check_figs/01-05.png)
+:::
+</div>
+
 
 
 ### Decode head-direction from neural activity
@@ -770,8 +794,21 @@ ax2.set_ylabel("Angle [rad]")
 cbar_ax2 = fig.add_axes([0.95, ax2.get_position().y0, 0.015, ax2.get_position().height])
 fig.colorbar(im, cax=cbar_ax2, label="Distance")
 
-plt.show()
+
 ```
+
+```{code-cell} ipython3
+:tags: [hide-input]
+fig.savefig("../../_static/_check_figs/01-06.png")
+```
+
+<div class="render-user">
+:::{admonition} Figure check
+:class: dropdown
+![](../../_static/_check_figs/01-06.png)
+:::
+</div>
+
 
 <div class="render-all">
 
