@@ -7,6 +7,7 @@ import pooch
 NEMOS_FILES = [
     "allen_478498617.nwb",
     "Mouse32-140822.nwb",
+    "A0670-221213.nwb",
 ]
 
 DATA_REGISTRY = {
