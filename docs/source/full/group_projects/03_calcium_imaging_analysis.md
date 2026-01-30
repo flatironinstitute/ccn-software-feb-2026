@@ -374,7 +374,7 @@ Here we can use the same `RaisedCosineLogConv` basis, but with a larger window s
 <div class="render-user">
 ```{code-cell} ipython3
 # define the basis for calcium data
-calcium_window_size_sec = 2 # Window size in seconds
+calcium_window_size_sec = 0.5 # Window size in seconds
 calcium_window_size = int(calcium_window_size_sec * transients.rate) # Convert window size to number of bins
 calcium_basis = nmo.basis.RaisedCosineLogConv(
     n_basis_funcs=..., # Number of basis functions 
