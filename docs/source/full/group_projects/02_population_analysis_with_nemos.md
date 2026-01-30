@@ -849,7 +849,7 @@ to get an array of predictors of shape, `(num_time_points, num_neurons * num_bas
 
 </div>
 
-##### Preparing the features
+#### Preparing the features
 
 <div class="render-all">
 
@@ -900,7 +900,7 @@ print(f"Convolved count shape: {convolved_count.shape}")
 ```
 
 (head-direction-fit-full)=
-##### Fitting the Model
+#### Fitting the Model
 
 <div class="render-all">
 
@@ -940,7 +940,7 @@ model = nmo.glm.PopulationGLM(
 print(f"Model coefficients shape: {model.coef_.shape}")
 ```
 
-##### Comparing model predictions.
+#### Comparing model predictions.
 
 <div class="render-all">
 
@@ -1022,7 +1022,7 @@ fig.savefig("../../_static/_check_figs/02-10.png")
 :::
 </div>
 
-##### Visualizing the connectivity
+#### Visualizing the connectivity
 
 <div class="render-all">
 
