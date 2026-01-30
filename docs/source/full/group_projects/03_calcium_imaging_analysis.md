@@ -388,7 +388,7 @@ calcium_basis
 
 ```{code-cell} ipython3
 # define the basis for calcium data
-calcium_window_size_sec = 2.0  # 2 seconds window
+calcium_window_size_sec = 0.5  # 5 seconds window
 calcium_window_size = int(calcium_window_size_sec * transients.rate)
 calcium_basis = nmo.basis.RaisedCosineLogConv(
     n_basis_funcs=4, window_size=calcium_window_size
