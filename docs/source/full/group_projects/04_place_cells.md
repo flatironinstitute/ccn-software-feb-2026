@@ -601,6 +601,7 @@ This afternoon, we'll show how to cross-validate across basis identity, which yo
 
 :::
 
+(basis-eval-place-cells-full)=
 #### 6. Instantiate the basis by doing the following:
 
 <div class="render-all">
