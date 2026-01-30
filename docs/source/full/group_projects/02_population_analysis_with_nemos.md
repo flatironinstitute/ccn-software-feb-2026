@@ -838,7 +838,7 @@ fig.savefig("../../_static/_check_figs/02-08.png")
 :::
 </div>
 
-#### All-to-all Connectivity
+### All-to-all Connectivity
 
 <div class="render-all">
 
@@ -925,7 +925,7 @@ model = nmo.glm.PopulationGLM(
     regularizer=, # Regularizer type
     solver_name=, # Solver name
     regularizer_strength= # Regularization strength
-    ).fit(, ) # Parameters are the convolved feature matrix and the binned spike count time series
+    ).fit( , ) # Parameters are the convolved feature matrix and the binned spike count time series
 print(f"Model coefficients shape: {model.coef_.shape}")
 ```
 </div>
