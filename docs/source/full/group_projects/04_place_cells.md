@@ -502,6 +502,7 @@ fig = workshop_utils.plot_position_speed(position, speed, place_fields.sel(unit=
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 fig.savefig("../../_static/_check_figs/pc-03.png")
 ```
 
@@ -975,7 +976,11 @@ fig.savefig("../../_static/_check_figs/pc-07.png")
 
 Finally, we need to extract the phase of theta from the filtered signal. We can do this by taking the angle of the [Hilbert transform](https://en.wikipedia.org/wiki/Hilbert_transform).
 
+</div>
+
 #### 5. Use [`sp.signal.hilbert`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.hilbert.html) to perform the Hilbert transform of `theta_band`, using [`np.angle`](https://numpy.org/doc/2.3/reference/generated/numpy.angle.html) to extract the angle. Convert the output angle to a [0, 2pi] range, and store the result in a `Tsd` object.
+
+<div class="render-all">
 
 - TIP: don't forget to pass the time support!
 - The line for wrapping the phase from [0, 2pi] is provided, by adding 2pi to all negative angles
@@ -1463,6 +1468,7 @@ fig = doc_plots.plot_position_phase_speed_tuning(
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 fig.savefig("../../_static/_check_figs/pc-12.png")
 ```
 
