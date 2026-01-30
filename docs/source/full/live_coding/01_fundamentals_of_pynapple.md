@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.18.1
+    jupytext_version: 1.19.1
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -21,6 +21,12 @@ kernelspec:
 :class: important render-all
 
 This notebook can be downloaded as **{nb-download}`01_fundamentals_of_pynapple.ipynb`**. See the button at the top right to download as markdown or pdf.
+:::
+
+:::{admonition} Jupyter Lab tip
+:class: important render-all
+
+Newer versions of Jupyter Lab have addressed an issue with skipping around the notebook while scrolling. To make sure this fix is enabled, in the Jupyter Lab GUI, navigate to `Settings > Settings Editor > Notebook` and scroll down to the `Windowing mode` setting and make sure it is set to `contentVisibility`. 
 :::
 
 
@@ -648,7 +654,6 @@ print(tc.fs)
 # tc[1].plot()
 # plt.plot(tc[1].feat1, tc[1].values)
 plt.plot(tc.feat1, tc.values.T)
-
 ```
 
 ## Important

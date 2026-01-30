@@ -520,6 +520,9 @@ def plot_position_speed(
         neuron_id = [neuron_id]
     fig = plt.figure(figsize=(6 * len(neuron_id), 7))
     gs = plt.GridSpec(2, 2 * len(neuron_id), wspace=0.3, hspace=0.35)
+    if hasattr(position_tuning, "distance") is False:
+        # for place cell notebook
+        position_tuning["distance"] = position_tuning.position
     pos_range = (
         np.min([position.min(), position_tuning.distance.min()]),
         np.max([position.max(), position_tuning.distance.max()]),
