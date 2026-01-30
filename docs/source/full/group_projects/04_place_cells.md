@@ -30,33 +30,21 @@ warnings.filterwarnings(
 :::{admonition} Download
 :class: important render-all
 
-This notebook can be downloaded as **{nb-download}`03_phase_precession.ipynb`**. See the button at the top right to download as markdown or pdf.
+This notebook can be downloaded as **{nb-download}`04_place_cells.ipynb`**. See the button at the top right to download as markdown or pdf.
 :::
 
 # Analyzing hippocampal place cells with Pynapple and NeMoS
 
 <div class="render-all">
     
-In this tutorial we will learn how to use more advanced applications of pynapple: signal processing and decoding. We'll apply these methods to demonstrate and visualize some well-known physiological properties of hippocampal activity, specifically phase presession of place cells and sequential coordination of place cell activity during theta oscillations.
+In this tutorial we will review more advanced applications of pynapple; tuning curves, signal processing, and decoding; as well as fitting GLMs to the data using NeMoS. We'll apply these methods to demonstrate and visualize some well-known physiological properties of hippocampal activity, specifically phase presession of place cells and sequential coordination of place cell activity during theta oscillations.
 
-</div>
-
-## Objectives
-
-<div class="render-all">
-    
-For part 1 of this notebook, we will be using Pynapple to achieve the following objectives:
-1. Load in and get a feel for the data set   
-2. Identify and extract theta oscillations in the LFP
-3. Identify place cells using 1D tuning curves
-4. Visualize phase precession using 2D tuning curves
-5. Use Baysian decoding to reconstruct spatial sequences from population activity
-
-For part 2, we will by applying NeMoS to explore the dataset further by:
-1. Visualize speed vs. position encoding
-2. Create a design matrix using a basis set to simplify speed and position parameter space
-3. Fit a Poisson GLM to neural activity with speed and position as predictors
-4. Evaluate the model's predicted tuning curves and compare to the real data
+This notebook is separated into 5 Parts:
+1. Data wrangling
+2. 1D neural tuning and model fitting
+3. Signal processing
+4. 2D neural tuning and model fitting
+5. Neural decoding
 
 </div>
 
@@ -381,21 +369,13 @@ axs[1].legend([l1,l2], ["position","speed"])
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-01.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-01.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-01.png)
-=======
 ![](../../_static/_check_figs/pc-01.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -521,13 +501,14 @@ fig = workshop_utils.plot_position_speed(position, speed, place_fields.sel(unit=
 ```
 
 ```{code-cell} ipython3
+:tags: [hide-input]
 fig.savefig("../../_static/_check_figs/pc-03.png")
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/pc-02.png)
+![](../../_static/_check_figs/pc-03.png)
 :::
 </div>
 
@@ -889,21 +870,13 @@ ax.legend([p1[0], p2[0]],["raw LFP","animal position"])
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-02.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-06.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-02.png)
-=======
 ![](../../_static/_check_figs/pc-06.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -988,21 +961,13 @@ plt.legend();
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-03.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-07.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-03.png)
-=======
 ![](../../_static/_check_figs/pc-07.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -1061,120 +1026,15 @@ ax.legend([p1[0],p2[0]],["theta phase","filtered LFP"])
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-04.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-08.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/03-04.png)
+![](../../_static/_check_figs/pc-08.png)
 :::
 </div>
-
-
-<div class="render-all">
-
-You should be able to see that each cycle "resets" (i.e. goes from $2\pi$ to $0$) at peaks of the theta oscillation.
-
-</div>
-
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-### Computing 1D tuning curves: place fields
-
-<div class="render-all">
-
-In order to identify phase precession in single units, we need to know their place selectivity. We can find place firing preferences of each unit by using the function [`nap.compute_tuning_curves`](https://pynapple.org/generated/pynapple.process.tuning_curves.html#pynapple.process.tuning_curves.compute_tuning_curves).
-
-First, we'll filter for units that fire at least 1 Hz and at most 10 Hz when the animal is running forward along the linear track. This will select for units that are active during our window of interest and eliminate putative interneurons (i.e. fast-firing inhibitory neurons that don't usually have place selectivity). Afterwards, we'll compute the tuning curves for these sub-selected units over position.
-
-</div>
-
-#### 11. Restrict `spikes` to `forward_ep` and select for units whose rate is at least 1 Hz and at most 10 Hz
-
-<div class="render-user">
-```{code-cell} ipython3
-# save the filtered spikes in the following variable
-good_spikes = 
-```
-</div>
-
-```{code-cell} ipython3
-good_spikes = spikes[(spikes.restrict(forward_ep).rate >= 1) & (spikes.restrict(forward_ep).rate <= 10)]
-```
-
-#### 12. Compute tuning curves for units in `good_spikes` with respect to `position`
-
-<div class="render-all">
-
-- Use 50 position bins
-- Name the feature `"position"` using the optional argument `feature_names`
-
-</div>
-
-<div class="render-user">
-```{code-cell} ipython3
-place_fields = 
-```
-</div>
-
-```{code-cell} ipython3
-place_fields = nap.compute_tuning_curves(good_spikes, position, 50, feature_names=["position"])
-```
-
-<div class="render-all">
-
-This function returns tuning curves as an `xarray.DataArray`, with coordinates for unit (first dimension) and position (second dimension). An `xarray.DataArray` object provides convenient tools for plotting and other manipulations, and it scales well for tuning curves with more than 1 feature. 
-
-</div>
-
-:::{admonition} Tip
-:class: tip render-all
-
-The reason [`nap.compute_tuning_curves`](https://pynapple.org/generated/pynapple.process.tuning_curves.html#pynapple.process.tuning_curves.compute_tuning_curves) returns a `xarray.DataArray` and not a Pynapple object is because the array elements no longer correspond to *time*, which Pynapple objects require.
-:::
-
-<div class="render-all">
-
-We can use the `xarray.DataArray` `plot` method to easily plot each unit.
-
-</div>
-
-```{code-cell} ipython3
-:tags: [render-all]
-
-from scipy.ndimage import gaussian_filter1d
-
-# smooth the place fields so they look nice
-place_fields.data = gaussian_filter1d(place_fields.data, 1, axis=-1)
-
-p = place_fields.plot(x="position", col="unit", col_wrap=5, size=1.2, sharey=False)
-p.set_ylabels("firing rate (Hz)")
-```
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-p.fig.savefig("../../_static/_check_figs/03-05.png")
-```
-
-<div class="render-user">
-:::{admonition} Figure check
-:class: dropdown
-![](../../_static/_check_figs/03-05.png)
-:::
-</div>
-
-<div class="render-all">
-    
-We can see spatial selectivity in many of the units; across the population, we have firing fields tiling the entire linear track. 
-
-</div>
-=======
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 
 ### Visualizing phase precession within a single unit
 
@@ -1223,17 +1083,13 @@ axs[1].legend()
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-06.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-09.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-![](../../_static/_check_figs/03-06.png)
+![](../../_static/_check_figs/pc-09.png)
 :::
 </div>
 
@@ -1286,21 +1142,13 @@ axs[2].legend()
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-07.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-10.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-07.png)
-=======
 ![](../../_static/_check_figs/pc-10.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -1342,21 +1190,13 @@ axs.set_xlabel("Position (cm)")
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-08.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-11.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-08.png)
-=======
 ![](../../_static/_check_figs/pc-11.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -1390,41 +1230,7 @@ upsampled_pos =
 upsampled_pos = position.interpolate(theta_phase)
 ```
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-<div class="render-all">
-
-Let's visualize the results of the interpolation.
-
-</div>
-
-```{code-cell} ipython3
-:tags: [render-all]
-
-fig,axs = plt.subplots(2,1,constrained_layout=True,sharex=True,figsize=(10,4))
-axs[0].plot(position.restrict(ex_run_ep),'.')
-axs[0].set(ylabel="Position (cm)", title="Original position points")
-axs[1].plot(upsampled_pos.restrict(ex_run_ep),'.')
-axs[1].set(ylabel="Position (cm)", xlabel="Time (s)", title="Upsampled position points")
-```
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-fig.savefig("../../_static/_check_figs/03-09.png")
-```
-
-<div class="render-user">
-:::{admonition} Figure check
-:class: dropdown
-![](../../_static/_check_figs/03-09.png)
-:::
-</div>
-
-
-#### 17. Stack `upsampled_pos` and `theta_phase` together into a single [`TsdFrame`](https://pynapple.org/generated/pynapple.TsdFrame.html)
-=======
 #### 2. Stack `upsampled_pos` and `theta_phase` together into a single [`TsdFrame`](https://pynapple.org/generated/pynapple.TsdFrame.html)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 
 <div class="render-all">
 
@@ -1487,21 +1293,13 @@ p = tc_norm.sel(unit=neurons).plot(x="position", y="phase", col="unit", col_wrap
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-p.fig.savefig("../../_static/_check_figs/03-10.png")
-=======
 p.fig.savefig("../../_static/_check_figs/pc-11.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-10.png)
-=======
 ![](../../_static/_check_figs/pc-11.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -1664,6 +1462,7 @@ fig = doc_plots.plot_position_phase_speed_tuning(
 ```
 
 ```{code-cell} ipython3
+:tags: [hide-input]
 fig.savefig("../../_static/_check_figs/pc-12.png")
 ```
 
@@ -1775,21 +1574,13 @@ p = (place_fields_sorted / place_fields_sorted.max(axis=1)).plot()
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-p.figure.savefig("../../_static/_check_figs/03-11.png")
-=======
 p.figure.savefig("../../_static/_check_figs/pc-13.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-11.png)
-=======
 ![](../../_static/_check_figs/pc-13.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -1836,21 +1627,13 @@ ax.set(xlabel="Time (s)", ylabel="Position (cm)", );
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-12.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-14.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-12.png)
-=======
 ![](../../_static/_check_figs/pc-14.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -1909,21 +1692,13 @@ ax.set(xlabel="Time (s)", ylabel="Position (cm)", );
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-13.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-15.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-13.png)
-=======
 ![](../../_static/_check_figs/pc-15.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -1974,21 +1749,13 @@ fig.supxlabel("Time (s)");
 ```{code-cell} ipython3
 :tags: [hide-input]
 
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-fig.savefig("../../_static/_check_figs/03-14.png")
-=======
 fig.savefig("../../_static/_check_figs/pc-16.png")
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 ```
 
 <div class="render-user">
 :::{admonition} Figure check
 :class: dropdown
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-![](../../_static/_check_figs/03-14.png)
-=======
 ![](../../_static/_check_figs/pc-16.png)
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
 :::
 </div>
 
@@ -2018,306 +1785,7 @@ Instead of using place fields computed from the data, what if we used the predic
 
 </div>
 
-```{code-cell} ipython3
-<<<<<<< Updated upstream:docs/source/full/group_projects/03_phase_precession.md
-:tags: [render-all]
-
-forward_ep = data["forward_ep"]
-position = data["position"].restrict(forward_ep)
-spikes = data["units"]
-place_fields = nap.compute_tuning_curves(spikes, position, bins=50, epochs=position.time_support, feature_names=["distance"])
-
-neurons = [82, 92, 220]
-place_fields = place_fields.sel(unit=neurons)
-spikes = spikes[neurons]
-bin_size = .01
-count = spikes.count(bin_size, ep=position.time_support)
-position = position.interpolate(count, ep=count.time_support)
-```
-
-### Visualizing speed
-
-<div class="render-all">
-
-One competing variable is speed: the speed at which the animal traverse the field is not homogeneous. Does it influence the firing rate of hippocampal neurons? We can compute tuning curves for speed as well as average speed across the maze.
-
-</div>
-
-```{code-cell} ipython3
-:tags: [render-all]
-
-speed = []
-# Analyzing each epoch separately avoids edge effects.
-for s, e in position.time_support.values: 
-    pos_ep = position.get(s, e)
-    # Absolute difference of two consecutive points
-    speed_ep = np.abs(np.diff(pos_ep)) 
-    # Padding the edge so that the size is the same as the position/spike counts
-    speed_ep = np.pad(speed_ep, [0, 1], mode="edge") 
-    # Converting to cm/s 
-    speed_ep = speed_ep * position.rate
-    speed.append(speed_ep)
-
-speed = nap.Tsd(t=position.t, d=np.hstack(speed), time_support=position.time_support)
-print(speed.shape)
-
-tc_speed = nap.compute_tuning_curves(spikes, speed, bins=20, epochs=speed.time_support, feature_names=["speed"])
-fig = workshop_utils.plot_position_speed(position, speed, place_fields.sel(unit=neurons), tc_speed, neurons);
-```
-
-<div class="all">
-
-These neurons all show both position and speed tuning, and we see that the animal's speed and position are highly correlated. GLMs can help us model responses to multiple, potentially correlated predictors. 
-
-The goal of this project is to fit a PopulationGLM including both position and speed as predictors, and check if this model accurately captures the tuning curves of the neurons.
-
-</div>
-
-(basis-eval-place-cells-full)=
-### Basis evaluation
-
-<div class="all">
-    
-As we've seen before, we will use basis objects to represent the input values.  In previous tutorials, we've used the `Conv` basis objects to represent the time-dependent effects we were looking to capture. Here, we're trying to capture the non-linear relationship between our input variables and firing rate, so we want the `Eval` objects. In these circumstances, you should look at the tuning you're trying to capture and compare to the [basis kernels (visualized in NeMoS docs)](https://nemos.readthedocs.io/en/latest/background/basis/README.html#): you want your tuning to be capturable by a linear combination of them.
-
-In this case, several of these would probably work; we will use [`MSplineEval`](https://nemos.readthedocs.io/en/latest/generated/basis/nemos.basis.MSplineEval.html#nemos.basis.MSplineEval) for both, though with different numbers of basis functions.
-
-Additionally, since we have two different inputs, we'll need two separate basis objects.
-
-</div>
-
-:::{note}
-:class: render-all
-
-This afternoon, we'll show how to cross-validate across basis identity, which you can use to choose the basis.
-
-:::
-
-#### 1. Instantiate the basis by doing the following:
-
-<div class="render-all">
-
-- Create a separate basis object for each model input (speed and position).
-- Use `BSplineEval` basis with 10 basis functions each.
-- Provide a label for each basis ("position" and "speed").
-- Visualize the basis objects.
-
-</div>
-
-<div class="render-user">
-```{code-cell} ipython3
-position_basis = 
-speed_basis = 
-workshop_utils.plot_pos_speed_bases(position_basis, speed_basis)
-```
-</div>
-
-```{code-cell} ipython3
-position_basis = nmo.basis.BSplineEval(n_basis_funcs=10, label="position")
-speed_basis = nmo.basis.BSplineEval(n_basis_funcs=10, label="speed")
-fig = workshop_utils.plot_pos_speed_bases(position_basis, speed_basis)
-```
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-fig.savefig("../../_static/_check_figs/03-15.png")
-```
-
-<div class="render-user">
-:::{admonition} Figure check
-:class: dropdown
-![](../../_static/_check_figs/03-15.png)
-:::
-</div>
-
-<div class="render-all">
-    
-However, now we have an issue: in all our previous examples, we had a single basis object, which took a single input to produce a single array which we then passed to the `GLM` object as the design matrix. What do we do when we have multiple basis objects?
-
-For people new to NeMoS, but familiar with NumPy, you can call `basis.compute_features()` for each basis separately and then [concatenate](https://numpy.org/doc/stable/reference/generated/numpy.concatenate.html) the outputs.
-
-For people familiar with [NeMoS basis composition](https://nemos.readthedocs.io/en/latest/background/basis/plot_02_ND_basis_function.html), you can add the two bases together obtaining a new 2D basis, then call `compute_features` passing both position and speed to obtain the same design matrix.
-
-</div>
-
-#### 2. Create a design matrix by doing one of the following:
-
-<div class="render-all">
-
-2.1. Call `compute_fatures` for both position and speed bases and concatenate the result to form a single design matrix.
-
-</div>
-
-
-<div class="render-user">
-```{code-cell} ipython3
-X_position = 
-X_speed = 
-X = np.concatenate(
-X
-```
-</div>
-
-```{code-cell} ipython3
-# equivalent to calling nmo.basis.AdditiveBasis(position_basis, speed_basis)
-X_position = position_basis.compute_features(position)
-X_speed = speed_basis.compute_features(speed)
-X = np.concatenate([X_position, X_speed], axis=1)
-X
-```
-
-<div class="render-all">
-
-2.2. Add the basis objects together and call `compute_fatures` on the newly created additive basis.
-
-</div>
-
-<div class="render-user">
-```{code-cell} ipython3
-additive_basis =
-X =
-```
-</div>
-
-```{code-cell} ipython3
-# equivalent to calling nmo.basis.AdditiveBasis(position_basis, speed_basis)
-basis = position_basis + speed_basis
-X = basis.compute_features(position, speed)
-X
-```
-
-<div class="render-all">
-
-Notice that, since we passed pynapple objects to the basis, we got a pynapple object back, preserving the time stamps. Additionally, `X` has the same number of time points as our input position and speed, but 20 columns. The columns come from  `n_basis_funcs` from each basis (10 for position, 10 for speed).
-
-</div>
-
-
-### Model learning
-
-<div class="render-all">
-
-As we've done before, we can now use the Poisson GLM from NeMoS to learn the combined model.
-
-</div>
-
-#### 3. Fit a GLM by doing the following:
-
-<div class="render-all">
-
-- Initialize `PopulationGLM`
-- Use the "LBFGS" solver and pass `{"tol": 1e-12}` to `solver_kwargs`.
-- Fit the data, passing the design matrix and spike counts to the glm object.
-
-</div>
-
-<div class="render-user">
-```{code-cell} ipython3
-# define the model
-glm =
-# fit
-glm.fit(
-```
-</div>
-
-```{code-cell} ipython3
-glm = nmo.glm.PopulationGLM(
-    solver_kwargs={"tol": 1e-12},
-    solver_name="LBFGS",
-)
-
-glm.fit(X, count)
-```
-
-### Prediction
-
-<div class="render-all">
-
-Let's check first if our model can accurately predict the tuning curves we displayed above. We can use the [`predict`](https://nemos.readthedocs.io/en/latest/generated/glm/nemos.glm.GLM.predict.html#nemos.glm.GLM.predict) function of NeMoS and then compute new tuning curves. Set `bins=50` for position and `bins=30` for speed.
-
-</div>
-
-#### 4. Use `predict` to check whether our GLM has captured each neuron's speed and position tuning.
-
-<div class="render-all">
-
-- Remember to convert the predicted firing rate to spikes per second!
-
-</div>
-
-<div class="render-user">
-```{code-cell} ipython3
-# predict the model's firing rate
-predicted_rate =
-# compute the position and speed tuning curves using the predicted firing rate.
-glm_tuning_pos = 
-glm_tuning_speed = 
-```
-</div>
-
-```{code-cell} ipython3
-# predict the model's firing rate
-predicted_rate = glm.predict(X) / bin_size
-
-# same shape as the counts we were trying to predict
-print(predicted_rate.shape, count.shape)
-
-# compute the position and speed tuning curves using the predicted firing rate.
-glm_tuning_pos = nap.compute_tuning_curves(predicted_rate, position, bins=50, epochs=position.time_support, feature_names=["position"])
-glm_tuning_speed = nap.compute_tuning_curves(predicted_rate, speed, bins=30, epochs=speed.time_support, feature_names=["speed"])
-```
-
-<div class="render-all">
-
-We can plot the results to compare the model and data tuning curves.
-
-</div>
-
-```{code-cell} ipython3
-:tags: [render-all]
-
-fig = workshop_utils.plot_position_speed_tuning(place_fields, tc_speed, glm_tuning_pos, glm_tuning_speed);
-```
-
-```{code-cell} ipython3
-:tags: [hide-input]
-
-fig.savefig("../../_static/_check_figs/03-16.png", bbox_inches="tight")
-```
-
-<div class="render-user">
-:::{admonition} Figure check
-:class: dropdown
-![](../../_static/_check_figs/03-16.png)
-:::
-</div>
-
-<div class="render-all">
-
-We can see that this model does a good job capturing both the position and the speed. 
-
-</div>
-
-### Bonus Exercise
-
-<div class="render-all">
-
-As an bonus, more open-ended exercise, we can investigate all the scientific decisions that we swept under the rug: should we regularize the model? What basis should we use? Do we need both inputs? If you're feeling ambitious, here are some suggestions to answer these questions:
-
-- Try to fit and compare the results we just obtained with different models: 
-  - A model with position as the only predictor.
-  - A model with speed as the only predictor.
-- Introduce L1 (Lasso) regularization and fit models with increasingly large penalty strengths ($\lambda$). Plot the regularization path showing how each coefficient changes with $\lambda$. Identify which coefficients remain non-zero longest as $\lambda$ increases - these correspond to the most informative predictors.
-
-</div>
-
-```{code-cell} ipython3
-# bonus exercise
-=======
-# GLM tuning curve decoding
->>>>>>> Stashed changes:docs/source/full/group_projects/02_phase_precession.md
-```
++++
 
 ## References
 
